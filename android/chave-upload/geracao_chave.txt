@@ -1,6 +1,6 @@
 keytool -genkey -v -keystore upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 
-Informe a senha da área de armazenamento de chaves: 	s2a4k3j9
+Informe a senha da área de armazenamento de chaves: 	s2a4....
 Qual é o seu nome e o seu sobrenome: 			Cristian de Mellos
 Qual é o nome da sua unidade organizacional: 		Casa
 Qual é o nome da sua empresa: 				CDM Software
