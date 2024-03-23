@@ -515,14 +515,35 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                versiculo != null ? versiculo!.texto : 'Clique abaixo para gerar um versículo bíblico...',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
+              if (versiculo == null) ...[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Clique no botão abaixo para receber um versículo bíblico...',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+              ],
               if (versiculo != null) ...[
-                Text(
-                  '${versiculo!.livro} ${versiculo!.versiculo}',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            versiculo!.texto,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          Text(
+                            '${versiculo!.livro} ${versiculo!.versiculo}',
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ],
