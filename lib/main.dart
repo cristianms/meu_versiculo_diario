@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_versiculo_diario/politica_privacidade/infra/ui/politica_privacidade_page.dart';
 import 'package:meu_versiculo_diario/verse_generator/aplication/impl/versiculo_service.dart';
 import 'package:meu_versiculo_diario/verse_generator/domain/models/versiculo.dart';
 import 'package:meu_versiculo_diario/verse_generator/infra/repositories/versiculo_repository_mock.dart';
@@ -42,6 +43,27 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Versículo Diário'),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem(
+                  value: 'privacy_policy',
+                  child: Text('Política de privacidade'),
+                ),
+              ];
+            },
+            onSelected: (value) async {
+              if (value == 'privacy_policy') {
+                // Aqui você pode adicionar a lógica para abrir a tela de política de privacidade
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PoliticaPrivacidadePage()),
+                );
+              }
+            },
+          ),
+        ],
       ),
       body: Container(
         color: Theme.of(context).colorScheme.primaryContainer,
