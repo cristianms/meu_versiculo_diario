@@ -1,7 +1,7 @@
 # APP - Meu Versículo Diário
 ## Pendências
 
-A new Flutter project.
+Aplicativo para gerar versículo bíblicos randômicos simulando a experiência de uma "caixinha de promessas". Desenvolvido em Flutter aplicando algumas boas práticas de Clean Architecture.
 
 
 
