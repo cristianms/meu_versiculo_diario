@@ -20,7 +20,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   /// Inicializa o service
   final versiculoService = VersesService(versiculoRepository: VersesRepositoryMock());
-  
+
   final notificationService = NotificationService();
 
   @override
@@ -45,7 +45,9 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     Versiculo versiculoAtual = versiculoService.getVersiculoAleatorio();
 
-    notificationService.verificaPermissaoParaNotificacoes();
+    if (kDebugMode) {
+      notificationService.verificaPermissaoParaNotificacoes();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +65,6 @@ class _DashboardPageState extends State<DashboardPage> {
             },
             onSelected: (value) async {
               if (value == 'privacy_policy') {
-                // Aqui você pode adicionar a lógica para abrir a tela de política de privacidade
                 await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const PrivacyPolicePage()),
@@ -162,6 +163,4 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
-
-
 }
