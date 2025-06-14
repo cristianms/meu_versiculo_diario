@@ -1,9 +1,4 @@
-// ignore_for_file: avoid_print
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:meu_versiculo_diario/notification/application/impl/notification_service.dart';
-import 'package:meu_versiculo_diario/notification/domain/custom_notification.dart';
 import 'package:meu_versiculo_diario/privacy_police/infra/ui/privacy_police_page.dart';
 import 'package:meu_versiculo_diario/verse_generator/aplication/impl/verses_service.dart';
 import 'package:meu_versiculo_diario/verse_generator/domain/models/versiculo.dart';
@@ -21,8 +16,6 @@ class _DashboardPageState extends State<DashboardPage> {
   /// Inicializa o service
   final versiculoService = VersesService(versiculoRepository: VersesRepositoryMock());
   
-  final notificationService = NotificationService();
-
   @override
   void initState() {
     super.initState();
@@ -44,8 +37,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     Versiculo versiculoAtual = versiculoService.getVersiculoAleatorio();
-
-    notificationService.verificaPermissaoParaNotificacoes();
 
     return Scaffold(
       appBar: AppBar(
@@ -107,34 +98,6 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                   ),
                 ),
-                if (kDebugMode) ...[
-                  ElevatedButton(
-                    child: const Text('Notificação simples'),
-                    onPressed: () {
-                      NotificationService().showNotification(
-                        CustomNotification(
-                          id: 2,
-                          title: 'teste 1',
-                          body: 'body 1 body 1 body 1',
-                          payload: 'payloadxxx',
-                        ),
-                      );
-                    },
-                  ),
-                  ElevatedButton(
-                    child: const Text('Notificação agendada'),
-                    onPressed: () {
-                      NotificationService().showScheduledNotification(
-                        CustomNotification(
-                          id: 2,
-                          title: 'teste 2',
-                          body: 'body 2 body 2 body 2 body 2 body 2 body 2 body 2 body 2',
-                          payload: 'payloadxxx',
-                        ),
-                      );
-                    },
-                  ),
-                ]
               ],
             ),
           ),
@@ -162,6 +125,4 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
-
-
 }
