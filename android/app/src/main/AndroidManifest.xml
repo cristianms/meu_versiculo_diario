@@ -1,18 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Bloco abaixo adicionado para suporte ao package "flutter_local_notifications" -->
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> -->
-    <!-- <uses-permission android:name="android.permission.USE_EXACT_ALARM" /> -->
-    <!-- <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!-- Bloco acima adicionado para suporte ao package "flutter_local_notifications" -->
-
     <application
         android:label="Versiculo Diário"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:enableOnBackInvokedCallback="true">
+
+        <!-- Bloco adicionado para suporte ao Google Mobile Ads -->
+        <!-- <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2193520791388347~1821003039"/> -->
+        <!-- Bloco adicionado para suporte ao Google Mobile Ads -->
 
         <activity
             android:name=".MainActivity"
