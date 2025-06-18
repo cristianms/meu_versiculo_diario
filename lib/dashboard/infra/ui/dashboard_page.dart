@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meu_versiculo_diario/dashboard/infra/ui/banner_widget.dart';
+import 'package:meu_versiculo_diario/dashboard/infra/ui/verse_generator_widget.dart';
 import 'package:meu_versiculo_diario/privacy_police/infra/ui/privacy_police_page.dart';
-import 'package:meu_versiculo_diario/verse_generator/aplication/impl/verses_service.dart';
-import 'package:meu_versiculo_diario/verse_generator/domain/models/versiculo.dart';
-import 'package:meu_versiculo_diario/verse_generator/infra/repositories/verses_repository_mock.dart';
-import 'package:meu_versiculo_diario/verse_generator/infra/ui/extensions/theme_context_extension.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -13,12 +12,37 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  /// Inicializa o service
-  final versiculoService = VersesService(versiculoRepository: VersesRepositoryMock());
-  
+  /// Variáveis para o Banner de Anúncio
+  BannerAd? _bannerAd;
+  bool _isAdLoaded = false;
+
   @override
   void initState() {
     super.initState();
+    // Inicializa o Banner de Anúncio
+    _bannerAd = BannerAd(
+      // adUnitId: 'ca-app-pub-2193520791388347/3924970930', // seu ID de anúncio
+      adUnitId: 'ca-app-pub-3940256099942544/9214589741', // seu ID de anúncio
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() => _isAdLoaded = true);
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+          print('Ad falhou: ${error.message}');
+        },
+      ),
+    );
+    // Carrega o Banner de Anúncio
+    _bannerAd!.load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
   }
 
   // Future<void> _consulta() async {
@@ -36,8 +60,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    Versiculo versiculoAtual = versiculoService.getVersiculoAleatorio();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -63,64 +85,19 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
-      body: Container(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            versiculoAtual.texto,
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                '${versiculoAtual.livro} ${versiculoAtual.versiculo}',
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+      body: Column(
+        children: [
+          const Expanded(
+            child: VerseGeneratorWidget(),
           ),
-        ),
-      ),
-      floatingActionButton: RawMaterialButton(
-        shape: const StadiumBorder(),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-        fillColor: context.colorScheme.inversePrimary,
-        onPressed: () {
-          setState(() => versiculoAtual = versiculoService.getVersiculoAleatorio());
-        },
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(
-              Icons.gesture_rounded,
-              color: Colors.white,
+          // Banner de anúncio
+          if (_isAdLoaded) ...[
+            BannerWidget(
+              key: const Key('banner_widget'),
+              bannerAd: _bannerAd!,
             ),
-            SizedBox(width: 6),
-            Text('Novo Versículo'),
           ],
-        ),
+        ],
       ),
     );
   }

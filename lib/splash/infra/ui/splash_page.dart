@@ -35,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -50,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-    /// Retorna o valor da largura de acordo com o tipo de tela do dispositivo
+  /// Retorna o valor da largura de acordo com o tipo de tela do dispositivo
   double getLogoWidth(BuildContext context) {
     final screenWidth = context.screenWidth;
     return context.getDoubleByScreenType(

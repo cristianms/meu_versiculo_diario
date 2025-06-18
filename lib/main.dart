@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meu_versiculo_diario/splash/infra/ui/splash_page.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-void main() {
+void main() async {
+  // Garante que os bindings do Flutter estejam inicializados
   WidgetsFlutterBinding.ensureInitialized();
+  // Inicializa o MobileAds SDK
+  await MobileAds.instance.initialize();
+  // Trava para apenas modo retrato
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  // Executa o aplicativo
   runApp(const MyApp());
 }
 
@@ -27,7 +35,6 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      // home: const DashboardPage(),
       home: const SplashScreen(),
     );
   }
