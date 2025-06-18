@@ -15,9 +15,9 @@
         android:enableOnBackInvokedCallback="true">
 
         <!-- Bloco adicionado para suporte ao Google Mobile Ads -->
-        <!-- <meta-data
+        <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2193520791388347~1821003039"/> -->
+            android:value="ca-app-pub-2193520791388347~1821003039"/>
         <!-- Bloco adicionado para suporte ao Google Mobile Ads -->
 
         <activity

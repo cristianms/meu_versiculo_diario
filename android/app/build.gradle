@@ -24,8 +24,9 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.meu_versiculo_diario"
-    compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    // Flag abaixo atualizada após implementação do AdMobs
+    // compileSdk flutter.compileSdkVersion
+    compileSdk 35
 
     compileOptions {
         // Linha abaixo adicionada para suporte ao package "flutter_local_notifications"
@@ -45,11 +46,10 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.meu_versiculo_diario"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        // Flag abaixo atualizada após implementação do AdMobs
+        // minSdkVersion flutter.minSdkVersion
+        minSdkVersion 23
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
