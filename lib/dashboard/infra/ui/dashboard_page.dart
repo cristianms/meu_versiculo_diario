@@ -21,8 +21,7 @@ class _DashboardPageState extends State<DashboardPage> {
     super.initState();
     // Inicializa o Banner de Anúncio
     _bannerAd = BannerAd(
-      // adUnitId: 'ca-app-pub-2193520791388347/3924970930', // seu ID de anúncio
-      adUnitId: 'ca-app-pub-3940256099942544/9214589741', // seu ID de anúncio
+      adUnitId: 'ca-app-pub-2193520791388347/3924970930', // seu ID de anúncio
       request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
