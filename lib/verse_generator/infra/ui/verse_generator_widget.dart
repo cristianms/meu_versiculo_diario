@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_versiculo_diario/dashboard/infra/ui/verse_card_widget.dart';
+import 'package:meu_versiculo_diario/verse_generator/infra/ui/verse_card_widget.dart';
 import 'package:meu_versiculo_diario/verse_generator/aplication/impl/verses_service.dart';
 import 'package:meu_versiculo_diario/verse_generator/domain/models/versiculo.dart';
 import 'package:meu_versiculo_diario/verse_generator/infra/repositories/verses_repository_mock.dart';

@@ -42,7 +42,7 @@ class _VerseCardWidgetState extends State<VerseCardWidget> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        '${widget.verse?.livro} ${widget.verse?.versiculo}',
+                        '${widget.verse?.livro} ${widget.verse?.capitulo} : ${widget.verse?.versiculo}',
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
