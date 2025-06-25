@@ -26,8 +26,21 @@ class _SplashScreenState extends State<SplashScreen> {
     // Redireciona para a página RechWrapperAppLinks
     // ignore: use_build_context_synchronously
     await Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const DashboardPage(),
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 1000),
+        pageBuilder: (context, animation, secondaryAnimation) => const DashboardPage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+          final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
       ),
     );
   }
